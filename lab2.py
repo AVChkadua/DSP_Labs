@@ -3,6 +3,7 @@ import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
+import commons
 
 
 def plot_graph(part):
@@ -18,35 +19,16 @@ def plot_graph(part):
 
 
 def output_to_csv(filename):
-    file = None
-    if os.path.isfile(filename):
-        print(f"File {filename} exists, overwrite? (y/N)")
-        overwrite = input().lower()
-        while (overwrite != "y") & (overwrite != "n") & (overwrite != ""):
-            print("Input \"y\" or \"n\" (case-insensitive)")
-            overwrite = input().lower()
-        if (overwrite == "n") | (overwrite == ""):
-            print("File will not be overwritten, exiting")
-            exit(0)
-        else:
-            print(f"Overwriting file {filename}")
-            file = open(filename, "w")
-    else:
-        file = open(filename, "w")
 
-    if file is None:
-        print("file is None, exiting...")
-        exit(1)
-
-    sum = 0
-    for t in np.arange(0.0, 0.1, 0.00001):
-        value = np.random.uniform()
-        x = "{0:.5f}".format(t)
-        y = "{0:.5f}".format(value)
+    file = commons.open_file(filename)
+    x_range = np.arange(0.0, 0.1, 0.00001)
+    noise = np.random.uniform(-1.3, 1.3, 10000)
+    for i in range(0, 10000):
+        x = "{0:.5f}".format(x_range[i])
+        y = "{0:.5f}".format(noise[i])
         file.write(f"{x}\t{y}\n")
-        sum += value
 
-    mean = "{0:.5f}".format(float(sum) / 100000)
+    mean = "{0:.5f}".format(np.mean(noise))
     print(f"Mean value is {mean}")
     file.close()
     exit(0)
