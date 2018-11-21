@@ -13,7 +13,7 @@ def plot_graph(signal_noise_sum, part):
     t = np.arange(0.0, 0.1 * part / 100, 0.00001)
     fig, ax = plt.subplots()
     plt.plot(t, signal_noise_sum[0:num_elems])
-    ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Lab #2 signal")
+    ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Signal + noise")
     plt.show()
 
 
@@ -33,10 +33,10 @@ def read_csv(signal, noise):
         noise_file = open(noise)
 
     amp_rel = 10 ** (8 / 20)
-    signal_values = map(lambda line: float(line.split("\t")[1]), signal_file.readlines())
-    noise_values = map(lambda line: float(line.split("\t")[1]) / amp_rel, noise_file.readlines())
+    signal_values = list(map(lambda line: float(line.split("\t")[1]), signal_file.readlines()))
+    noise_values = list(map(lambda line: float(line.split("\t")[1]) / amp_rel, noise_file.readlines()))
 
-    return np.sum([list(signal_values), list(noise_values)], 0)
+    return np.sum([signal_values, noise_values], 0)
 
 
 if len(sys.argv) < 4:

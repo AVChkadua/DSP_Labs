@@ -10,10 +10,10 @@ def plot_graph(part):
         print("Invalid percentage")
         exit(1)
     t = np.arange(0.0, 0.1 * part / 100, 0.00001)
-    noise = np.random.uniform(-1, 1, len(t))
+    noise = np.random.uniform(-1.3, 1.3, len(t))
     fig, ax = plt.subplots()
     plt.plot(t, noise)
-    ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Lab #2 signal")
+    ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Noise")
     plt.show()
 
 

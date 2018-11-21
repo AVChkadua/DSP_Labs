@@ -17,7 +17,7 @@ def plot_graph(part):
     func = 1.3 * np.cos(2 * np.pi * 26885.46875 * t + np.radians(120))
     fig, ax = plt.subplots()
     plt.plot(t, func)
-    ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Lab #1 signal")
+    ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Signal")
     plt.show()
 
 
