@@ -1,7 +1,8 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import os
 import sys
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def plot_graph(part):
@@ -9,7 +10,7 @@ def plot_graph(part):
         print("Invalid percentage")
         exit(1)
     t = np.arange(0.0, 0.1 * part / 100, 0.00001)
-    noise = np.random.uniform(size=len(t))
+    noise = np.random.uniform(-1, 1, len(t))
     fig, ax = plt.subplots()
     plt.plot(t, noise)
     ax.set(xlabel="time (ms)", ylabel="voltage (V)", title="Lab #2 signal")
